@@ -1,0 +1,31 @@
+
+services:
+  app:
+    build: ./docker/app
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    command: "php-fpm"
+    depends_on:
+      - db
+
+  web:
+    image: arm64v8/nginx:1.26-alpine
+    ports:
+      - "80:80" 
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./:/var/www/html
+    depends_on:
+      - app
+
+  db:
+    image: arm64v8/mariadb:10.5
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
