@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Game;
+use App\Models\Roster;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

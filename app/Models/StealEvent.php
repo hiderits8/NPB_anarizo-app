@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\PlayByPlay;
+use App\Models\Player;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StealEvent extends Model
 {
@@ -20,4 +24,14 @@ class StealEvent extends Model
         'runner_id',
         'steal_success',
     ];
+
+    public function playByPlay(): BelongsTo
+    {
+        return $this->belongsTo(PlayByPlay::class, 'pbp_id', 'pbp_id');
+    }
+
+    public function runner(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'runner_id');
+    }
 }

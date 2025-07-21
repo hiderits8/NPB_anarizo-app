@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Game;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,8 +22,6 @@ class GameCategory extends Model
     protected $fillable = [
         'category_name',
     ];
-
-
 
     public function game(): HasMany
     {

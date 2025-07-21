@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Roster;
+use App\Models\PlayerNameHistory;
+use App\Models\PlayerGameAppearance;
+use App\Models\PlayerGameStats;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

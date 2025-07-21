@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Roster;
+use App\Models\Game;
+use App\Models\Player;
+use App\Models\SubstitutionEvent;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,8 +28,6 @@ class PlayerGameAppearance extends Model
         'start_inning',
         'end_inning',
         'innings_played',
-        'created_at',
-        'updated_at',
     ];
 
     public function roster(): BelongsTo

@@ -2,6 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Team;
+use App\Models\Stadium;
+use App\Models\GameCategory;
+use App\Models\PlayerGameAppearance;
+use App\Models\PlayByPlay;
+use App\Models\PlayerGameStats;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +20,7 @@ class Game extends Model
     use HasFactory;
 
     protected $primaryKey = 'game_id';
-    public $incrementing = false;
+    public $incrementing = true;
     protected $keyType = 'integer';
 
     public $timestamps = true;

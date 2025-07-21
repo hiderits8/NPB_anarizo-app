@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Game;
+use App\Models\PitchEvent;
+use App\Models\StealEvent;
+use App\Models\SubstitutionEvent;
+use App\Models\AdvancementEvent;
+use App\Models\ErrorEvent;
+use App\Models\OtherEvent;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -28,8 +36,6 @@ class PlayByPlay extends Model
         'runner_second_id',
         'runner_third_id',
         'event_type',
-        'created_at',
-        'updated_at',
     ];
 
     public function game(): BelongsTo
