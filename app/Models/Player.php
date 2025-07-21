@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
+class Player extends Model
+{
+    /** @use HasFactory<\Database\Factories\PlayerFactory> */
+    use HasFactory;
+
+    protected $primaryKey = "player_id";
+    public $incrementing = false;
+    protected $keyType = "integer";
+
+    public $timestamps = true;
+
+    protected $fillable = [
+        'official_name',
+        'display_name',
+        'english_name',
+        'date_of_birth',
+        'height',
+        'weight',
+        'throws_left',
+        'throws_right',
+        'bats_left',
+        'bats_right',
+    ];
+
+
+    public function roster(): HasMany
+    {
+        return $this->hasMany(Roster::class);
+    }
+
+    public function playerNameHistory(): HasMany
+    {
+        return $this->hasMany(PlayerNameHistory::class);
+    }
+
+    public function playerGameAppearance(): HasMany
+    {
+        return $this->hasMany(PlayerGameAppearance::class);
+    }
+
+    public function playerGameStats(): HasMany
+    {
+        return $this->hasMany(PlayerGameStats::class);
+    }
+}

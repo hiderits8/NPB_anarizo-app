@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Stadium extends Model
+{
+    /** @use HasFactory<\Database\Factories\StadiumFactory> */
+    use HasFactory;
+
+    protected $primaryKey = 'stadium_id';
+    public $incrementing = true;
+    protected $keyType = 'integer';
+
+    public $timestamps = true;
+
+    protected $fillable = [
+        'stadium_name',
+        'is_dome',
+    ];
+
+    public function game(): HasMany
+    {
+        return $this->hasMany(Game::class);
+    }
+}
