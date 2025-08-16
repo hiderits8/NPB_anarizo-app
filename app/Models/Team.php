@@ -34,6 +34,10 @@ class Team extends Model
     {
         return $this->hasMany(Game::class, 'away_team_id', 'team_id');
     }
+    public function allGames(): HasMany
+    {
+        return Game::where('home_team_id', $this->team_id)->orWhere('away_team_id', $this->team_id)->get();
+    }
 
     public function rosters(): HasMany
     {
