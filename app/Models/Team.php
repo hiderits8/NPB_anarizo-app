@@ -25,9 +25,14 @@ class Team extends Model
         'league',
     ];
 
-    public function games(): HasMany
+    public function homeGames(): HasMany
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'home_team_id', 'team_id');
+    }
+
+    public function awayGames(): HasMany
+    {
+        return $this->hasMany(Game::class, 'away_team_id', 'team_id');
     }
 
     public function rosters(): HasMany
