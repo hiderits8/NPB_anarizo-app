@@ -1,0 +1,51 @@
+# ───────────────────────────────────────────────────────────────
+# コミットメッセージ テンプレート
+# Conventional Commits v1.0.0 準拠
+# 仕様：https://www.conventionalcommits.org/en/v1.0.0-beta.4/ 
+# commitlint 設定：
+# https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional 
+#
+# フォーマット:
+# <type>(<scope>): <short summary>
+#
+# ■ subject（要約行）のルール
+# - 先頭は小文字の命令形（e.g. “add”, “fix”, “remove”）
+# - 50文字以内
+# - scope は変更箇所（ファイル名や機能名、任意）
+#
+# ■ type（コミット種別）一覧
+# feat:     新機能
+# fix:      バグ修正
+# docs:     ドキュメントのみの変更
+# style:    フォーマットや空白、セミコロン追加など動作に影響しない変更
+# refactor: リファクタリング（機能追加・バグ修正を伴わない構造改善）
+# perf:     パフォーマンス改善
+# test:     テスト追加・修正
+# build:    ビルド関連（例: package.json の変更）
+# ci:       CI 設定・スクリプト変更（例: GitHub Actions）
+# chore:    補助ツールやライブラリ更新など雑多な変更
+# revert:   コミットの取り消し
+# wip:      作業途中のコミット（正式PR前の一時保存）
+#
+# ■ Body（本文）
+# 空行を１行挟んで記述。複数行の場合は 72 文字程度で改行。
+# - Why? なぜこの変更が必要か
+# - What? 何をどのように変更したか
+#
+# ■ Footer（フッター）
+# 空行を１行挟んで記述
+# - Closes #123 → 関連 Issue 番号
+# - BREAKING CHANGE: 破壊的変更の詳細
+#
+# ■ 例
+# feat(api): プレイヤー統計取得エンドポイントを実装
+#
+# Body:
+# - なぜ: ユーザーが試合後に成績を参照できるようにするため
+# - 何を: GET /api/players/{id}/stats を追加し、
+#   PlayerGameStats モデルとのリレーションを返却
+#
+# Footer:
+# Closes #42
+# BREAKING CHANGE: レスポンス JSON フォーマットが変更されます
+# ───────────────────────────────────────────────────────────────
