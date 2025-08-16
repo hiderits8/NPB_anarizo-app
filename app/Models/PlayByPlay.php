@@ -75,31 +75,31 @@ class PlayByPlay extends Model
 
     public function pitchEvent(): HasOne
     {
-        return $this->hasOne(PitchEvent::class, 'event_id');
+        return $this->hasOne(PitchEvent::class);
     }
 
     public function stealEvents(): HasMany
     {
-        return $this->hasMany(StealEvent::class, 'event_id');
+        return $this->hasMany(StealEvent::class);
     }
 
     public function substitutionEvents(): HasMany
     {
-        return $this->hasMany(SubstitutionEvent::class, 'event_id');
+        return $this->hasMany(SubstitutionEvent::class);
     }
 
     public function advancementEvents(): HasMany
     {
-        return $this->hasMany(AdvancementEvent::class, 'event_id');
+        return $this->hasMany(AdvancementEvent::class);
     }
 
     public function errorEvents(): HasMany
     {
-        return $this->hasMany(ErrorEvent::class, 'event_id');
+        return $this->hasMany(ErrorEvent::class);
     }
 
     public function otherEvents(): HasMany
     {
-        return $this->hasMany(OtherEvent::class, 'event_id');
+        return $this->hasMany(OtherEvent::class);
     }
 }

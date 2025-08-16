@@ -60,16 +60,16 @@ class Game extends Model
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class, 'appearance_id');
+        return $this->hasMany(PlayerGameAppearance::class);
     }
 
     public function playByPlays(): HasMany
     {
-        return $this->hasMany(PlayByPlay::class, 'pbp_id');
+        return $this->hasMany(PlayByPlay::class);
     }
 
     public function playerGameStats(): HasMany
     {
-        return $this->hasMany(PlayerGameStats::class, 'stats_id');
+        return $this->hasMany(PlayerGameStats::class);
     }
 }

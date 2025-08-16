@@ -49,6 +49,6 @@ class PlayerGameAppearance extends Model
 
     public function substitutionEvent(): HasOne
     {
-        return $this->hasOne(SubstitutionEvent::class, 'event_id');
+        return $this->hasOne(SubstitutionEvent::class, 'appearance_id', 'appearance_id');
     }
 }

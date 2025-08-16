@@ -43,6 +43,6 @@ class Roster extends Model
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class, 'appearance_id');
+        return $this->hasMany(PlayerGameAppearance::class);
     }
 }

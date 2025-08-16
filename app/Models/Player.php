@@ -44,16 +44,16 @@ class Player extends Model
 
     public function playerNameHistories(): HasMany
     {
-        return $this->hasMany(PlayerNameHistory::class, 'history_id');
+        return $this->hasMany(PlayerNameHistory::class);
     }
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class, 'appearance_id');
+        return $this->hasMany(PlayerGameAppearance::class);
     }
 
     public function playerGameStats(): HasMany
     {
-        return $this->hasMany(PlayerGameStats::class, 'stats_id');
+        return $this->hasMany(PlayerGameStats::class);
     }
 }
