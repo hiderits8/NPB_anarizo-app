@@ -24,7 +24,7 @@ class Stadium extends Model
         'is_dome',
     ];
 
-    public function game(): HasMany
+    public function games(): HasMany
     {
         return $this->hasMany(Game::class);
     }

@@ -23,8 +23,8 @@ class GameCategory extends Model
         'category_name',
     ];
 
-    public function game(): HasMany
+    public function games(): HasMany
     {
-        return $this->hasMany(Game::class, 'category_id');
+        return $this->hasMany(Game::class);
     }
 }

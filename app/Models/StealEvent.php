@@ -22,6 +22,7 @@ class StealEvent extends Model
     protected $fillable = [
         'pbp_id',
         'runner_id',
+        'attempted_base',
         'steal_success',
     ];
 

@@ -38,16 +38,16 @@ class PitchEvent extends Model
 
     public function playByPlay(): BelongsTo
     {
-        return $this->belongsTo(PlayByPlay::class);
+        return $this->belongsTo(PlayByPlay::class, 'pbp_id', 'pbp_id');
     }
 
     public function pitcher(): BelongsTo
     {
-        return $this->belongsTo(Player::class, 'pitcher_id');
+        return $this->belongsTo(Player::class, 'pitcher_id', 'player_id');
     }
 
     public function batter(): BelongsTo
     {
-        return $this->belongsTo(Player::class, 'batter_id');
+        return $this->belongsTo(Player::class, 'batter_id', 'player_id');
     }
 }

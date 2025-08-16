@@ -38,9 +38,14 @@ class Game extends Model
         'category_id',
     ];
 
-    public function team(): BelongsTo
+    public function homeTeam(): BelongsTo
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class, 'home_team_id', 'team_id');
+    }
+
+    public function awayTeam(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'away_team_id', 'team_id');
     }
 
     public function stadium(): BelongsTo
@@ -50,21 +55,21 @@ class Game extends Model
 
     public function gameCategory(): BelongsTo
     {
-        return $this->belongsTo(GameCategory::class);
+        return $this->belongsTo(GameCategory::class, 'category_id', 'category_id');
     }
 
-    public function playerGameAppearance(): HasMany
+    public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class);
+        return $this->hasMany(PlayerGameAppearance::class, 'appearance_id');
     }
 
-    public function playByPlay(): HasMany
+    public function playByPlays(): HasMany
     {
-        return $this->hasMany(PlayByPlay::class);
+        return $this->hasMany(PlayByPlay::class, 'pbp_id');
     }
 
     public function playerGameStats(): HasMany
     {
-        return $this->hasMany(PlayerGameStats::class);
+        return $this->hasMany(PlayerGameStats::class, 'stats_id');
     }
 }

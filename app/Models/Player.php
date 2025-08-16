@@ -37,23 +37,23 @@ class Player extends Model
     ];
 
 
-    public function roster(): HasMany
+    public function rosters(): HasMany
     {
         return $this->hasMany(Roster::class);
     }
 
-    public function playerNameHistory(): HasMany
+    public function playerNameHistories(): HasMany
     {
-        return $this->hasMany(PlayerNameHistory::class);
+        return $this->hasMany(PlayerNameHistory::class, 'history_id');
     }
 
-    public function playerGameAppearance(): HasMany
+    public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class);
+        return $this->hasMany(PlayerGameAppearance::class, 'appearance_id');
     }
 
     public function playerGameStats(): HasMany
     {
-        return $this->hasMany(PlayerGameStats::class);
+        return $this->hasMany(PlayerGameStats::class, 'stats_id');
     }
 }

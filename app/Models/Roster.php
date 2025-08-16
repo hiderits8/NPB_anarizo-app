@@ -29,7 +29,6 @@ class Roster extends Model
         'end_date',
         'uniform_number',
         'position',
-        'is_active',
     ];
 
     public function player(): BelongsTo
@@ -44,6 +43,6 @@ class Roster extends Model
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class);
+        return $this->hasMany(PlayerGameAppearance::class, 'appearance_id');
     }
 }

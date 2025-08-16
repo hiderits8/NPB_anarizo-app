@@ -13,6 +13,7 @@ use App\Models\OtherEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PlayByPlay extends Model
@@ -29,9 +30,13 @@ class PlayByPlay extends Model
         'game_id',
         'inning',
         'top_bottom',
+        'pbp_sequence',
+        'anchor_pitch_sequence',
         'count_b',
         'count_s',
         'count_o',
+        'batter_id',
+        'pitcher_id',
         'runner_first_id',
         'runner_second_id',
         'runner_third_id',
@@ -43,33 +48,58 @@ class PlayByPlay extends Model
         return $this->belongsTo(Game::class);
     }
 
+    public function batter(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'batter_id', 'player_id');
+    }
+
+    public function pitcher(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'pitcher_id', 'player_id');
+    }
+
+    public function runnerFirst(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'runner_first_id', 'player_id');
+    }
+
+    public function runnerSecond(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'runner_second_id', 'player_id');
+    }
+
+    public function runnerThird(): BelongsTo
+    {
+        return $this->belongsTo(Player::class, 'runner_third_id', 'player_id');
+    }
+
     public function pitchEvent(): HasOne
     {
-        return $this->hasOne(PitchEvent::class, 'pbp_id', 'pbp_id');
+        return $this->hasOne(PitchEvent::class, 'event_id');
     }
 
-    public function stealEvent(): HasOne
+    public function stealEvents(): HasMany
     {
-        return $this->hasOne(StealEvent::class, 'pbp_id', 'pbp_id');
+        return $this->hasMany(StealEvent::class, 'event_id');
     }
 
-    public function substitutionEvent(): HasOne
+    public function substitutionEvents(): HasMany
     {
-        return $this->hasOne(SubstitutionEvent::class, 'pbp_id', 'pbp_id');
+        return $this->hasMany(SubstitutionEvent::class, 'event_id');
     }
 
-    public function advancementEvent(): HasOne
+    public function advancementEvents(): HasMany
     {
-        return $this->hasOne(AdvancementEvent::class, 'pbp_id', 'pbp_id');
+        return $this->hasMany(AdvancementEvent::class, 'event_id');
     }
 
-    public function errorEvent(): HasOne
+    public function errorEvents(): HasMany
     {
-        return $this->hasOne(ErrorEvent::class, 'pbp_id', 'pbp_id');
+        return $this->hasMany(ErrorEvent::class, 'event_id');
     }
 
-    public function otherEvent(): HasOne
+    public function otherEvents(): HasMany
     {
-        return $this->hasOne(OtherEvent::class, 'pbp_id', 'pbp_id');
+        return $this->hasMany(OtherEvent::class, 'event_id');
     }
 }

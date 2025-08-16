@@ -25,14 +25,12 @@ class Team extends Model
         'league',
     ];
 
-
-
     public function games(): HasMany
     {
         return $this->hasMany(Game::class);
     }
 
-    public function rosteres(): HasMany
+    public function rosters(): HasMany
     {
         return $this->hasMany(Roster::class);
     }
