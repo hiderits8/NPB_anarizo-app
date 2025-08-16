@@ -18,7 +18,7 @@ class Player extends Model
     use HasFactory;
 
     protected $primaryKey = "player_id";
-    public $incrementing = false;
+    public $incrementing = true;
     protected $keyType = "integer";
 
     public $timestamps = true;
