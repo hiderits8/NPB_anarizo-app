@@ -10,7 +10,6 @@ use App\Models\SubstitutionEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PlayerGameAppearance extends Model
@@ -28,6 +27,7 @@ class PlayerGameAppearance extends Model
         'player_id',
         'start_inning',
         'end_inning',
+        'position',
         'roster_id',
         'innings_played',
     ];
@@ -47,8 +47,8 @@ class PlayerGameAppearance extends Model
         return $this->belongsTo(Player::class);
     }
 
-    public function substitutionEvents(): HasOne
+    public function substitutionEvent(): HasOne
     {
-        return $this->hasOne(SubstitutionEvent::class, 'appearance_id');
+        return $this->hasOne(SubstitutionEvent::class, 'event_id');
     }
 }
