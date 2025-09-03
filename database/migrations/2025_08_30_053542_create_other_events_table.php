@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_categories', function (Blueprint $table) {
-            $table->increments('category_id');
-            $table->string('category_name', 100);
+        Schema::create('other_events', function (Blueprint $table) {
+            $table->increments('event_id');
+            $table->foreignId('pbp_id')->constrained(table: 'play_by_plays', column: 'pbp_id');
+            $table->string('event_subtype', 50);
+            $table->string('detail', 255)->nullable();
             $table->timestamps();
-            $table->unique('category_name');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_categories');
+        Schema::dropIfExists('other_events');
     }
 };

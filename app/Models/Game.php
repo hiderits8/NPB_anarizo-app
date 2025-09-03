@@ -34,7 +34,7 @@ class Game extends Model
         'final_score_home',
         'final_score_away',
         'status',
-        'game_type',
+        'is_nighter',
         'category_id',
     ];
 

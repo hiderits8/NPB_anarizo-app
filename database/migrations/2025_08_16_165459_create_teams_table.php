@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('team_id');
-            $table->string('team_name', 100);
-            $table->string('league', 50);
+            $table->string('team_name', 100)->unique();
+            $table->string('league', 50)->nullable();
             $table->timestamps();
+            $table->index('league');
         });
     }
 

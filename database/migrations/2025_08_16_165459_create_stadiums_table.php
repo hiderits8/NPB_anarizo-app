@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('stadiums', function (Blueprint $table) {
             $table->increments('stadium_id');
-            $table->string('stadium_name', 100);
-            $table->boolean('is_dome');
+            $table->string('stadium_name', 100)->unique();
+            $table->boolean('is_dome')->default(false);
             $table->timestamps();
         });
     }
