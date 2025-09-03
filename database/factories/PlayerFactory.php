@@ -16,10 +16,12 @@ class PlayerFactory extends Factory
      */
     public function definition(): array
     {
+        $en = Factory::create('en_US');
+
         return [
             'official_name' => fake()->name(),
             'display_name' => fake()->name(),
-            'english_name' => fake()->locale('en_US')->name(),
+            'english_name' => $en->name(),
             'date_of_birth' => fake()->date(),
             'height' => fake()->numberBetween(160, 200),
             'weight' => fake()->numberBetween(60, 100),

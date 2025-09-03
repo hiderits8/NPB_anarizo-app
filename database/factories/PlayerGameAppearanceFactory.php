@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Game;
+use App\Models\Player;
+use App\Models\Roster;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PlayerGameAppearance>
@@ -21,7 +24,7 @@ class PlayerGameAppearanceFactory extends Factory
             'player_id' => Player::factory(),
             'start_inning' => fake()->numberBetween(1, 9),
             'end_inning' => fake()->numberBetween(1, 9),
-            'position' => fake()->randomElements([
+            'position' => fake()->randomElement([
                 'P',
                 'C',
                 '1B',
@@ -33,7 +36,7 @@ class PlayerGameAppearanceFactory extends Factory
                 'RF',
             ]),
             'roster_id' => Roster::factory(),
-            'outs_recorded' => fake()->numberBetween(0, 9),
+            'outs_recorded' => fake()->numberBetween(0, 27),
         ];
     }
 }
