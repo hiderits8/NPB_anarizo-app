@@ -49,7 +49,7 @@ return new class extends Migration
             $table->integer('SV')->default(0);                    // セーブ数 (Saves)
 
             // --- Appearance ---
-            $table->float('InningsPlayed')->default(0);           // 出場イニング数（PlayerGameAppearance集計値）
+            $table->integer('outs_recorded')->default(0);           // 出場アウト数（PlayerGameAppearance集計値->3で除してInningsPlayedにする）
 
             $table->timestamps();
 

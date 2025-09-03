@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->integer('start_inning');
             $table->integer('end_inning')->nullable();
-            $table->float('innings_played');
+            $table->integer('outs_recorded');
 
             $table->foreignId('roster_id')->constrained(table: 'rosters', column: 'roster_id');
             $table->timestamps();

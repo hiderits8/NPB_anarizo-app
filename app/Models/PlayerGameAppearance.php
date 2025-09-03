@@ -29,7 +29,7 @@ class PlayerGameAppearance extends Model
         'end_inning',
         'position',
         'roster_id',
-        'innings_played',
+        'outs_recorded',
     ];
 
     public function roster(): BelongsTo

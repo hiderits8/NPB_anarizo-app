@@ -50,7 +50,7 @@ class PlayerGameStats extends Model
         'L',
         'Holds',
         'SV',
-        'InningsPlayed',
+        'outs_recorded',
     ];
 
     public function player(): BelongsTo
