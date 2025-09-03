@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rosters', function (Blueprint $table) {
-            $table->id();
+        Schema::create('other_events', function (Blueprint $table) {
+            $table->increments('event_id');
+            $table->foreignId('pbp_id')->constrained(table: 'play_by_plays', column: 'pbp_id');
+            $table->string('event_subtype', 50);
+            $table->string('detail', 255)->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rosters');
+        Schema::dropIfExists('other_events');
     }
 };

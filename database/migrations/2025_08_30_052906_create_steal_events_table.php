@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('steal_events', function (Blueprint $table) {
-            $table->id();
+            $table->increments('event_id');
+            $table->foreignId('pbp_id')->constrained(table: 'play_by_plays', column: 'pbp_id');
+            $table->foreignId('runner_id')->constrained(table: 'players', column: 'player_id');
+            $table->tinyInteger('attempted_base');
+            $table->boolean('steal_success');
             $table->timestamps();
         });
     }

@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('play_by_plays', function (Blueprint $table) {
-            $table->id();
+        Schema::create('teams', function (Blueprint $table) {
+            $table->increments('team_id');
+            $table->string('team_name', 100)->unique();
+            $table->string('league', 50)->nullable();
             $table->timestamps();
+            $table->index('league');
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('play_by_plays');
+        Schema::dropIfExists('teams');
     }
 };
