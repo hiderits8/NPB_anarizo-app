@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('end_inning')->nullable();
             $table->integer('outs_recorded');
 
-            $table->foreignId('roster_id')->constrained(table: 'rosters', column: 'roster_id');
             $table->timestamps();
 
             $table->unique(['game_id', 'player_id', 'start_inning']);
