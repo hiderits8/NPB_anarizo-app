@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Game;
 use App\Models\Player;
-use App\Models\Roster;
+use App\Models\Team;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PlayerGameAppearance>
@@ -19,11 +19,15 @@ class PlayerGameAppearanceFactory extends Factory
      */
     public function definition(): array
     {
+        $start = fake()->numberBetween(1, 9);
+        $end = fake()->numberBetween($start, 9);
+        $outs = ($end - $start + 1) * 3 - fake()->numberBetween(0, 2);
+
         return [
             'game_id' => Game::factory(),
             'player_id' => Player::factory(),
-            'start_inning' => fake()->numberBetween(1, 9),
-            'end_inning' => fake()->numberBetween(1, 9),
+            'start_inning' => $start,
+            'end_inning' => $end,
             'position' => fake()->randomElement([
                 'P',
                 'C',
@@ -35,8 +39,8 @@ class PlayerGameAppearanceFactory extends Factory
                 'CF',
                 'RF',
             ]),
-            'roster_id' => Roster::factory(),
-            'outs_recorded' => fake()->numberBetween(0, 27),
+            'team_id' => Team::factory(),
+            'outs_recorded' => $outs,
         ];
     }
 }

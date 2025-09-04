@@ -8,6 +8,7 @@ use App\Models\Roster;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Team extends Model
 {
@@ -21,6 +22,8 @@ class Team extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'club_id',
+        'level',
         'team_name',
         'league',
     ];
@@ -35,8 +38,13 @@ class Team extends Model
         return $this->hasMany(Game::class, 'away_team_id', 'team_id');
     }
 
-    public function rosters(): HasMany
+    public function club(): BelongsTo
     {
-        return $this->hasMany(Roster::class);
+        return $this->belongsTo(Club::class, 'club_id', 'club_id');
+    }
+
+    public function playerGameAppearances(): HasMany
+    {
+        return $this->hasMany(PlayerGameAppearance::class);
     }
 }

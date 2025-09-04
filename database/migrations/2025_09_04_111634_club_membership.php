@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rosters', function (Blueprint $table) {
-            $table->bigIncrements('roster_id')->primary();
+        Schema::create('club_memberships', function (Blueprint $table) {
+            $table->bigIncrements('membership_id')->primary();
+            $table->foreignId('club_id')->constrained(table: 'clubs', column: 'club_id');
             $table->foreignId('player_id')->constrained(table: 'players', column: 'player_id');
-            $table->foreignId('team_id')->constrained(table: 'teams', column: 'team_id');
-            $table->integer('season_year');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->integer('uniform_number');
-            $table->string('position', 20);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rosters');
+        //
     }
 };
