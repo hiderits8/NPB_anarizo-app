@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Club;
+use App\Models\Team;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -14,31 +16,49 @@ class TeamSeeder extends Seeder
      */
     public function run(): void
     {
-        $now = Carbon::now();
-
-        $teams = [
-            // セ・リーグ
-            ['team_name' => '読売ジャイアンツ',   'league' => 'Central', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '東京ヤクルトスワローズ', 'league' => 'Central', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '横浜DeNAベイスターズ',   'league' => 'Central', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '中日ドラゴンズ',       'league' => 'Central', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '阪神タイガース',       'league' => 'Central', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '広島東洋カープ',       'league' => 'Central', 'created_at' => $now, 'updated_at' => $now],
-
-            // パ・リーグ
-            ['team_name' => '埼玉西武ライオンズ',   'league' => 'Pacific', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '千葉ロッテマリーンズ',   'league' => 'Pacific', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '東北楽天ゴールデンイーグルス', 'league' => 'Pacific', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '北海道日本ハムファイターズ',   'league' => 'Pacific', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => '福岡ソフトバンクホークス',     'league' => 'Pacific', 'created_at' => $now, 'updated_at' => $now],
-            ['team_name' => 'オリックス・バファローズ',     'league' => 'Pacific', 'created_at' => $now, 'updated_at' => $now],
+        $map = [
+            '読売ジャイアンツ' => ['Central', 'Eastern'],
+            '横浜DeNAベイスターズ' => ['Central', 'Eastern'],
+            '阪神タイガース' => ['Central', 'Western'],
+            '中日ドラゴンズ' => ['Central', 'Western'],
+            '広島東洋カープ' => ['Central', 'Western'],
+            '東京ヤクルトスワローズ' => ['Central', 'Eastern'],
+            'オリックス・バファローズ' => ['Pacific', 'Western'],
+            '福岡ソフトバンクホークス' => ['Pacific', 'Western'],
+            '千葉ロッテマリーンズ' => ['Pacific', 'Eastern'],
+            '埼玉西武ライオンズ' => ['Pacific', 'Eastern'],
+            '東北楽天ゴールデンイーグルス' => ['Pacific', 'Eastern'],
+            '北海道日本ハムファイターズ' => ['Pacific', 'Eastern'],
+            'オイシックス新潟アルビレックスBC' => [null, 'Eastern'],
+            'くふうハヤテベンチャーズ静岡' => [null, 'Western'],
         ];
 
-        // team_name を一意キーとして upsert
-        DB::table('teams')->upsert(
-            $teams,
-            uniqueBy: ['team_name'],
-            update: ['league', 'updated_at']
-        );
+
+        foreach ($map as $clubName => $levels) {
+            $club = Club::where('club_name', $clubName)->firstOrFail();
+
+            $leagueTop = $levels[0];
+            $leagueFarm = $levels[1];
+
+            if ($leagueTop !== null) {
+                Team::firstOrCreate([
+                    'club_id' => $club->club_id,
+                    'team_name' => $clubName . '（一軍）',
+                ], [
+                    'league' => $levels[0],
+                    'level'  => 'First',
+                ]);
+            }
+
+            if ($leagueFarm !== null) {
+                Team::firstOrCreate([
+                    'club_id' => $club->club_id,
+                    'team_name' => $clubName . '（ファーム）',
+                ], [
+                    'league' => $leagueFarm,
+                    'level'  => 'Farm',
+                ]);
+            }
+        }
     }
 }

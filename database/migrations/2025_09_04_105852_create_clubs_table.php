@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clubs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('club_id')->primary();
+            $table->string('club_name', 100)->unique();
             $table->timestamps();
         });
     }
