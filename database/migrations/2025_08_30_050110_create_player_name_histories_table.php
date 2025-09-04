@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('player_name_histories', function (Blueprint $table) {
-            $table->increments('history_id');
+            $table->bigIncrements('history_id')->primary();
             $table->foreignId('player_id')->constrained(table: 'players', column: 'player_id');
             $table->string('name', 100);
             $table->string('name_type', 20);

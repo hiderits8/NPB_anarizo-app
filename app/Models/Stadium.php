@@ -13,6 +13,7 @@ class Stadium extends Model
     /** @use HasFactory<\Database\Factories\StadiumFactory> */
     use HasFactory;
 
+    protected $table = 'stadiums';
     protected $primaryKey = 'stadium_id';
     public $incrementing = true;
     protected $keyType = 'integer';

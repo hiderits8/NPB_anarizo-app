@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('play_by_plays', function (Blueprint $table) {
-            $table->increments('pbp_id');
+            $table->bigIncrements('pbp_id')->primary();
             $table->foreignId('game_id')->constrained(table: 'games', column: 'game_id');
             $table->integer('inning');
             $table->string('top_bottom', 1);

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pitch_events', function (Blueprint $table) {
-            $table->increments('event_id');
+            $table->bigIncrements('event_id')->primary();
             $table->foreignId('pbp_id')->constrained(table: 'play_by_plays', column: 'pbp_id')->unique();
             $table->foreignId('pitcher_id')->constrained(table: 'players', column: 'player_id');
             $table->foreignId('batter_id')->constrained(table: 'players', column: 'player_id');
