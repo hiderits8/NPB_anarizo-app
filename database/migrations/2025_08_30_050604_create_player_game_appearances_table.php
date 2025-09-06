@@ -13,8 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('player_game_appearances', function (Blueprint $table) {
-            $table->increments('appearance_id');
+            $table->bigIncrements('appearance_id')->primary();
             $table->foreignId('game_id')->constrained(table: 'games', column: 'game_id');
+            $table->foreignId('team_id')->constrained(table: 'teams', column: 'team_id');
             $table->foreignId('player_id')->constrained(table: 'players', column: 'player_id');
             $table->string('position', 20);
 
@@ -22,7 +23,6 @@ return new class extends Migration
             $table->integer('end_inning')->nullable();
             $table->integer('outs_recorded');
 
-            $table->foreignId('roster_id')->constrained(table: 'rosters', column: 'roster_id');
             $table->timestamps();
 
             $table->unique(['game_id', 'player_id', 'start_inning']);

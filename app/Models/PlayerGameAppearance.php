@@ -25,26 +25,26 @@ class PlayerGameAppearance extends Model
     protected $fillable = [
         'game_id',
         'player_id',
+        'team_id',
         'start_inning',
         'end_inning',
         'position',
-        'roster_id',
         'outs_recorded',
     ];
 
-    public function roster(): BelongsTo
-    {
-        return $this->belongsTo(Roster::class);
-    }
-
     public function game(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class, 'game_id', 'game_id');
     }
 
     public function player(): BelongsTo
     {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(Player::class, 'player_id', 'player_id');
+    }
+
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_id', 'team_id');
     }
 
     public function substitutionEvent(): HasOne

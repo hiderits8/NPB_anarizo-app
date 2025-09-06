@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_categories', function (Blueprint $table) {
-            $table->bigIncrements('category_id')->primary();
-            $table->string('category_name', 100);
+        Schema::create('clubs', function (Blueprint $table) {
+            $table->bigIncrements('club_id')->primary();
+            $table->string('club_name', 100)->unique();
             $table->timestamps();
-            $table->unique('category_name');
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_categories');
+        Schema::dropIfExists('clubs');
     }
 };

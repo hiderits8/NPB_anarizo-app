@@ -2,29 +2,28 @@
 
 namespace App\Models;
 
-use App\Models\Game;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class GameCategory extends Model
+class Club extends Model
 {
-    /** @use HasFactory<\Database\Factories\GameCategoryFactory> */
+    /** @use HasFactory<\Database\Factories\ClubFactory> */
     use HasFactory;
 
-    protected $primaryKey = 'category_id';
+    protected $table = 'clubs';
+
+    protected $primaryKey = 'club_id';
     public $incrementing = true;
     protected $keyType = 'integer';
-
     public $timestamps = true;
 
     protected $fillable = [
-        'category_name',
+        'club_name',
     ];
 
-    public function games(): HasMany
+    public function teams(): HasMany
     {
-        return $this->hasMany(Game::class, 'category_id', 'category_id');
+        return $this->hasMany(Team::class, 'club_id', 'club_id');
     }
 }

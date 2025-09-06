@@ -2,33 +2,31 @@
 
 namespace App\Models;
 
-use App\Models\Player;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PlayerNameHistory extends Model
+class ClubMembership extends Model
 {
-    /** @use HasFactory<\Database\Factories\PlayerNameHistoryFactory> */
-    use HasFactory;
+    protected $table = 'club_memberships';
 
-    protected $primaryKey = 'history_id';
+    protected $primaryKey = 'membership_id';
     public $incrementing = true;
     protected $keyType = 'integer';
-
     public $timestamps = true;
 
     protected $fillable = [
         'player_id',
-        'name',
-        'name_type',
-        'effective_date',
+        'club_id',
+        'start_date',
         'end_date',
+        'uniform_number'
     ];
 
 
+    public function club(): BelongsTo
+    {
+        return $this->belongsTo(Club::class, 'club_id', 'club_id');
+    }
     public function player(): BelongsTo
     {
         return $this->belongsTo(Player::class, 'player_id', 'player_id');

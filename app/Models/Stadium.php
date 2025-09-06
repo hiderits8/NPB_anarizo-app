@@ -13,6 +13,7 @@ class Stadium extends Model
     /** @use HasFactory<\Database\Factories\StadiumFactory> */
     use HasFactory;
 
+    protected $table = 'stadiums';
     protected $primaryKey = 'stadium_id';
     public $incrementing = true;
     protected $keyType = 'integer';
@@ -26,6 +27,6 @@ class Stadium extends Model
 
     public function games(): HasMany
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'stadium_id', 'stadium_id');
     }
 }

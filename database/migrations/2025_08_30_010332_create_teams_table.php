@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->increments('team_id');
+            $table->bigIncrements('team_id')->primary();
+            $table->foreignId('club_id')->constrained(table: 'clubs', column: 'club_id');
+            $table->string('level', 50)->nullable();
             $table->string('team_name', 100)->unique();
             $table->string('league', 50)->nullable();
             $table->timestamps();

@@ -12,17 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->increments('game_id');
+            $table->bigIncrements('game_id')->primary();
             $table->integer('season_year');
             $table->date('game_date');
-            $table->foreignId('stadium_id')->constrained();
+
+            $table->foreignId('stadium_id')->constrained(table: 'stadiums', column: 'stadium_id');
             $table->foreignId('home_team_id')->constrained(table: 'teams', column: 'team_id');
             $table->foreignId('away_team_id')->constrained(table: 'teams', column: 'team_id');
             $table->integer('final_score_home');
             $table->integer('final_score_away');
             $table->string('status', 100);
             $table->boolean('is_nighter')->default(true);
-            $table->foreignId('category_id')->constrained(table: 'game_categories');
+            $table->foreignId('category_id')->constrained(table: 'game_categories', column: 'category_id');
             $table->timestamps();
         });
     }
