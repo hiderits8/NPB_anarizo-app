@@ -45,6 +45,6 @@ class Team extends Model
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class);
+        return $this->hasMany(PlayerGameAppearance::class, 'team_id', 'team_id');
     }
 }

@@ -23,11 +23,11 @@ return new class extends Migration
             $table->tinyInteger('count_s');
             $table->tinyInteger('count_o');
 
-            $table->foreignId('batting_player_id')->constrained(table: 'players', column: 'player_id')->nullable();
-            $table->foreignId('pitching_player_id')->constrained(table: 'players', column: 'player_id')->nullable();
-            $table->foreignId('runner_first_id')->constrained(table: 'players', column: 'player_id')->nullable();
-            $table->foreignId('runner_second_id')->constrained(table: 'players', column: 'player_id')->nullable();
-            $table->foreignId('runner_third_id')->constrained(table: 'players', column: 'player_id')->nullable();
+            $table->foreignId('batter_id')->constrained(table: 'players', column: 'player_id');
+            $table->foreignId('pitcher_id')->constrained(table: 'players', column: 'player_id');
+            $table->foreignId('runner_first_id')->nullable()->constrained(table: 'players', column: 'player_id');
+            $table->foreignId('runner_second_id')->nullable()->constrained(table: 'players', column: 'player_id');
+            $table->foreignId('runner_third_id')->nullable()->constrained(table: 'players', column: 'player_id');
 
             $table->string('event_type', 50);
             $table->timestamps();

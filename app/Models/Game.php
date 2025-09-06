@@ -50,7 +50,7 @@ class Game extends Model
 
     public function stadium(): BelongsTo
     {
-        return $this->belongsTo(Stadium::class);
+        return $this->belongsTo(Stadium::class, 'stadium_id', 'stadium_id');
     }
 
     public function gameCategory(): BelongsTo
@@ -60,16 +60,16 @@ class Game extends Model
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class);
+        return $this->hasMany(PlayerGameAppearance::class, 'game_id', 'game_id');
     }
 
     public function playByPlays(): HasMany
     {
-        return $this->hasMany(PlayByPlay::class);
+        return $this->hasMany(PlayByPlay::class, 'game_id', 'game_id');
     }
 
     public function playerGameStats(): HasMany
     {
-        return $this->hasMany(PlayerGameStats::class);
+        return $this->hasMany(PlayerGameStats::class, 'game_id', 'game_id');
     }
 }

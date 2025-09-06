@@ -45,7 +45,7 @@ class PlayByPlay extends Model
 
     public function game(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class, 'game_id', 'game_id');
     }
 
     public function batter(): BelongsTo
@@ -75,31 +75,31 @@ class PlayByPlay extends Model
 
     public function pitchEvent(): HasOne
     {
-        return $this->hasOne(PitchEvent::class);
+        return $this->hasOne(PitchEvent::class, 'pbp_id', 'pbp_id');
     }
 
     public function stealEvents(): HasMany
     {
-        return $this->hasMany(StealEvent::class);
+        return $this->hasMany(StealEvent::class, 'pbp_id', 'pbp_id');
     }
 
     public function substitutionEvents(): HasMany
     {
-        return $this->hasMany(SubstitutionEvent::class);
+        return $this->hasMany(SubstitutionEvent::class, 'pbp_id', 'pbp_id');
     }
 
     public function advancementEvents(): HasMany
     {
-        return $this->hasMany(AdvancementEvent::class);
+        return $this->hasMany(AdvancementEvent::class, 'pbp_id', 'pbp_id');
     }
 
     public function errorEvents(): HasMany
     {
-        return $this->hasMany(ErrorEvent::class);
+        return $this->hasMany(ErrorEvent::class, 'pbp_id', 'pbp_id');
     }
 
     public function otherEvents(): HasMany
     {
-        return $this->hasMany(OtherEvent::class);
+        return $this->hasMany(OtherEvent::class, 'pbp_id', 'pbp_id');
     }
 }

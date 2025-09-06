@@ -25,6 +25,6 @@ class GameCategory extends Model
 
     public function games(): HasMany
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'category_id', 'category_id');
     }
 }

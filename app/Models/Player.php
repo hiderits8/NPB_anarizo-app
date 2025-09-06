@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Roster;
 use App\Models\PlayerNameHistory;
 use App\Models\PlayerGameAppearance;
 use App\Models\PlayerGameStats;
@@ -37,23 +36,18 @@ class Player extends Model
     ];
 
 
-    public function rosters(): HasMany
-    {
-        return $this->hasMany(Roster::class);
-    }
-
     public function playerNameHistories(): HasMany
     {
-        return $this->hasMany(PlayerNameHistory::class);
+        return $this->hasMany(PlayerNameHistory::class, 'player_id', 'player_id');
     }
 
     public function playerGameAppearances(): HasMany
     {
-        return $this->hasMany(PlayerGameAppearance::class);
+        return $this->hasMany(PlayerGameAppearance::class, 'player_id', 'player_id');
     }
 
     public function playerGameStats(): HasMany
     {
-        return $this->hasMany(PlayerGameStats::class);
+        return $this->hasMany(PlayerGameStats::class, 'player_id', 'player_id');
     }
 }

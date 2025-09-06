@@ -21,29 +21,26 @@ class GameFactory extends Factory
      */
     public function definition(): array
     {
+
+        $home = Team::query()->inRandomOrder()->first()->team_id;
+        $away = Team::query()->where('team_id', '!=', $home)->inRandomOrder()->first()->team_id;
+        $stadium = Stadium::query()->inRandomOrder()->first()->stadium_id;
+        $category = GameCategory::query()->inRandomOrder()->first()->category_id;
+
         $date = fake()->dateTimeBetween('-3 years', 'now');
         $season_year = (int) Carbon::instance($date)->format('Y');
+
         return [
             'season_year' => $season_year,
             'game_date' => $date,
-            'stadium_id' => Stadium::factory(),
-            'home_team_id' => Team::factory(),
-            'away_team_id' => Team::factory(),
+            'stadium_id' => $stadium,
+            'home_team_id' => $home,
+            'away_team_id' => $away,
             'final_score_home' => fake()->numberBetween(0, 10),
             'final_score_away' => fake()->numberBetween(0, 10),
             'status' => fake()->randomElement(['scheduled', 'completed', 'cancelled']),
             'is_nighter' => fake()->boolean(),
-            'category_id' => GameCategory::factory(),
+            'category_id' => $category,
         ];
-    }
-
-    public function configure()
-    {
-        return $this->afterCreating(function (Game $game) {
-            if ($game->home_team_id === $game->away_team_id) {
-                $game->away_team_id = Team::factory()->create()->getKey();
-                $game->save();
-            }
-        });
     }
 }

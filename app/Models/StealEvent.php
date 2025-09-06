@@ -33,6 +33,6 @@ class StealEvent extends Model
 
     public function runner(): BelongsTo
     {
-        return $this->belongsTo(Player::class, 'runner_id');
+        return $this->belongsTo(Player::class, 'runner_id', 'player_id');
     }
 }

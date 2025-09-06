@@ -55,11 +55,11 @@ class PlayerGameStats extends Model
 
     public function player(): BelongsTo
     {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(Player::class, 'player_id', 'player_id');
     }
 
     public function game(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class, 'game_id', 'game_id');
     }
 }
