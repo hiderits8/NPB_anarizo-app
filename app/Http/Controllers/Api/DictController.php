@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\Stadium;
 use App\Models\Club;
+use App\Models\Player;
 use Illuminate\Http\JsonResponse;
 
 
@@ -34,6 +35,12 @@ class DictController extends Controller
     public function clubs(): JsonResponse
     {
         $rows = Club::query()->select('club_id', 'club_name')->orderBy('club_name')->get();
+        return response()->json(['data' => $rows]);
+    }
+
+    public function players(): JsonResponse
+    {
+        $rows = Player::query()->select('player_id', 'official_name', 'display_name')->orderBy('official_name')->get();
         return response()->json(['data' => $rows]);
     }
 }
